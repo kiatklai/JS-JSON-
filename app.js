@@ -28,13 +28,14 @@ const list = document.getElementById("list")
 
 let output=''
 
-fetch("user.json")
-.then(res=>res.json())
-.then(json=>{
+
+//async & await
+async function getUsers(){
+    const res=await fetch("user.json")
+    const json=await res.json()
     json.users.forEach(item => {
         output+="<li>"+item.name+"</li>"
     })
     list.innerHTML = output
-}).catch(err=>{
-    console.log(err)
-})
+}
+getUsers()
